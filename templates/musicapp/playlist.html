@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% block title %} Playlist {% endblock title %}
+{% block body %}
+{% load static %}
+<br>
+<div class="container">
+
+  <header class="section-heading">
+    <h3 class="section-title">All Prayers Requested </h3>
+  </header><!-- sect-heading -->
+  <hr>
+  <!-- Movie list -->
+  <div class="row">
+    <p> {% for i  in prayers %}</p>
+    <div class="col-md-3">
+      <div class="thumbnail">
+        <a href="{% url 'prayers' %}">
+          <img src="{% static 'musicapp/images/bg.jpg' %}" class="img-responsive" height="200" width="200">
+        </a>
+        <center>
+          {{i.user}}
+        </center>
+        <p>{{i.request_time}}</p>
+        </div>
+        </div>
+        {% endfor %}
+        
+      </div>
+    </div>
+   </div>
+
+</div>
+
+{% endblock body %}
