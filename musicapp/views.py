@@ -161,18 +161,20 @@ def all_songs(request):
         if last_played_list:
             last_played_id = last_played_list[0]['song_id']
             last_played_song = Song.objects.get(id=last_played_id)
+        else:
+            last_played_song = Song.objects.get(id=3)
     else:
         first_time = True
         last_played_song = Song.objects.get(id=7)
 
-    
+
     # apply search filters
     qs_singers = Song.objects.values_list('singer').all()
     s_list = [s.split(',') for singer in qs_singers for s in singer]
     all_singers = sorted(list(set([s.strip() for singer in s_list for s in singer])))
     qs_languages = Song.objects.values_list('language').all()
     all_languages = sorted(list(set([l.strip() for lang in qs_languages for l in lang])))
-    
+
     if len(request.GET) > 0:
         search_query = request.GET.get('q')
         search_singer = request.GET.get('singers') or ''
@@ -199,7 +201,7 @@ def all_songs(request):
 
 
 def recent(request):
-    
+
     #Last played song
     last_played_list = list(Recent.objects.values('song_id').order_by('-id'))
     if last_played_list:
@@ -306,7 +308,7 @@ def playlist_songs(request, playlist_name):
 def favourite(request):
     songs = Song.objects.filter(favourite__user=request.user, favourite__is_fav=True).distinct()
     print(f'songs: {songs}')
-    
+
     if request.method == "POST":
         song_id = list(request.POST.keys())[1]
         favourite_song = Favourite.objects.filter(user=request.user, song__id=song_id, is_fav=True)
