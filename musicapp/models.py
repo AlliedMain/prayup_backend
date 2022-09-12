@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Song(models.Model):
 
     Language_Choice = (
-              ('Hindi', 'Hindi'),
+              
               ('English', 'English'),
           )
 
@@ -28,11 +28,11 @@ class Playlist(models.Model):
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
 
-class Favourite(models.Model):
-    id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    song = models.ForeignKey(Song, on_delete=models.CASCADE)
-    is_fav = models.BooleanField(default=False)
+# class Favourite(models.Model):
+#     #id = models.AutoField(primary_key=True)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     song = models.ForeignKey(Song, on_delete=models.CASCADE)
+#     is_fav = models.BooleanField(default=False)
 
 
 class Recent(models.Model):
@@ -40,9 +40,9 @@ class Recent(models.Model):
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
 class Prayers(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     prayer = models.TextField(max_length=1250, null=True)
-    request_time = models.DateTimeField()
+    request_time = models.DateTimeField(blank=True)
 
 
     

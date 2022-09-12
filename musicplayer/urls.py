@@ -23,6 +23,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),  # for all-auth
     path('', include('musicapp.urls')),
     path('authentication/', include('authentication.urls')),
+    path('customprayers/', include('prayers.api.urls'))
     
 ]
 
