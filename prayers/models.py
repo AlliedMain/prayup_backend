@@ -33,6 +33,7 @@ class PrayerRequested(models.Model):
     year = models.IntegerField(blank=True)
     # singer = models.CharField(max_length=200)
     song_file = models.FileField(blank=True)
+    user = models.EmailField(blank=True)
 
     def __str__(self):
         return self.name

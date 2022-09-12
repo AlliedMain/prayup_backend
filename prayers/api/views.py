@@ -28,3 +28,4 @@ class PrayersRequestedAPIView(ListAPIView):
     serializer_class = PrayersRequestedSerializers
     fields = "__all__"
     model = serializer_class.Meta.model
+    queryset = model.objects.all()
