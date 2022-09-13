@@ -36,7 +36,7 @@ class PrayerRequested(models.Model):
     user = models.EmailField(blank=True)
 
     def __str__(self):
-        return self.name
+        return self.prayer_name
 
     class Meta:
         verbose_name_plural = "PrayersRequested"
